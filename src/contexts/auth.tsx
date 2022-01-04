@@ -6,12 +6,6 @@ import React, {
   useReducer,
 } from 'react';
 
-type State = {
-  isLoading: boolean;
-  isSignout: boolean;
-  userToken: string | null;
-};
-
 // type AuthDispatch = Dispatch<Action>;
 // const AuthDispatchContext = createContext<AuthDispatch | null>(null);
 
@@ -21,12 +15,26 @@ const initialState = {
   userToken: null,
 };
 
-const AuthStateContext = createContext<State>(initialState);
-const AuthDispatchContext = createContext<{
+type State = {
+  isLoading: boolean;
+  isSignout: boolean;
+  userToken: string | null;
+};
+
+type Dispatch = {
   signIn: (data: string) => Promise<void>;
   signOut: () => void;
   signUp: (data: string) => Promise<void>;
-}>(null);
+};
+
+const initialDispatch = {
+  signIn: async () => {},
+  signOut: () => {},
+  signUp: async () => {},
+};
+
+const AuthStateContext = createContext<State>(initialState);
+const AuthDispatchContext = createContext<Dispatch>(initialDispatch);
 
 type Action =
   | {type: 'RESTORE_TOKEN'; token: string | null}
@@ -99,12 +107,16 @@ export function AuthProvider({children}: {children: React.ReactNode}) {
 
 export function useAuthState() {
   const state = useContext(AuthStateContext);
-  if (!state) throw new Error('Cannot find AuthProvider'); // 유효하지 않을땐 에러를 발생
+  if (!state) {
+    throw new Error('Cannot find AuthProvider');
+  }
   return state;
 }
 
 export function useAuthDispatch() {
   const dispatch = useContext(AuthDispatchContext);
-  if (!dispatch) throw new Error('Cannot find AuthProvider'); // 유효하지 않을땐 에러를 발생
+  if (!dispatch) {
+    throw new Error('Cannot find AuthProvider');
+  }
   return dispatch;
 }

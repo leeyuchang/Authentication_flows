@@ -7,19 +7,19 @@ import {QueryClient, QueryClientProvider} from 'react-query';
 import {LogBox} from 'react-native';
 
 LogBox.ignoreLogs(['new NativeEventEmitter']); // Ignore log notification by message
-LogBox.ignoreAllLogs(); //Ignore all log notifications
+// LogBox.ignoreAllLogs(); //Ignore all log notifications
 
 const queryClient = new QueryClient();
 
 const App = () => {
   return (
-    <QueryClientProvider client={queryClient}>
-      <NativeBaseProvider>
-        <AuthProvider>
+    <AuthProvider>
+      <QueryClientProvider client={queryClient}>
+        <NativeBaseProvider>
           <RootNavigator />
-        </AuthProvider>
-      </NativeBaseProvider>
-    </QueryClientProvider>
+        </NativeBaseProvider>
+      </QueryClientProvider>
+    </AuthProvider>
   );
 };
 
