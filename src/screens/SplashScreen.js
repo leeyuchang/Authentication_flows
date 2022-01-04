@@ -11,7 +11,7 @@ export default function SplashScreen() {
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-      <Text>Youlpass</Text>
+      <Text fontSize={72}>LOGO</Text>
     </View>
   );
 }

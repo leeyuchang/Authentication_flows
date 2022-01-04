@@ -19,7 +19,7 @@ export const Example = () => {
   const [response, setResponse] = useState('');
 
   useEffect(() => {
-    ioRef.current = io('http://000.000.000.000:3100');
+    ioRef.current = io();
     ioRef.current.emit('joinRoom', {myId: '123'});
     ioRef.current.on('changes', msg =>
       setResponse(prev => prev + JSON.stringify(msg, null, 2)),

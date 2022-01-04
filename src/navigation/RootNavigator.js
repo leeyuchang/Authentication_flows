@@ -1,13 +1,13 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {HomeScreen, SplashScreen, SignInScreen} from '../screens';
-import AuthContext from '../contexts/auth';
+import {useAuthState} from '../contexts/auth';
 
 const Stack = createNativeStackNavigator();
 
 export default function RootNavigator() {
-  const {isLoading, userToken} = useContext(AuthContext);
+  const {isLoading, userToken} = useAuthState();
 
   return (
     <NavigationContainer>

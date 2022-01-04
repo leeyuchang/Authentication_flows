@@ -8,14 +8,13 @@ import {
   Input,
   Link,
   Text,
-  View,
   VStack,
 } from 'native-base';
-import React, {useContext, useState} from 'react';
-import AuthContext from '../contexts/auth';
+import React from 'react';
+import {useAuthDispatch} from '../contexts/auth';
 
 export default function SignInScreen() {
-  const {signIn} = useContext(AuthContext);
+  const {signIn} = useAuthDispatch();
   // const [username, setUsername] = useState('');
   // const [password, setPassword] = useState('');
 
